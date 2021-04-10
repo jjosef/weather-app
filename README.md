@@ -27,7 +27,9 @@ Open the file and set your environment variables appropriately.
 
 I added a few dependencies to make API calls and testing API calls easier.
 
-[superagent](https://visionmedia.github.io/superagent/) is my goto HTTP wrapper for both front and backend development.
+[superagent](https://visionmedia.github.io/superagent/) is my goto HTTP wrapper for both front and backend development. I'm not creating a backend component in this example, but it would be useful for a simple user manager and location storage.
+
+[weather-icons-react](https://najens.github.io/weather-icons-react/) a simple library of weather-related icons to spice up the app a little bit.
 
 # Getting Started with Create React App
 
