@@ -1,3 +1,28 @@
+# How this app was setup
+
+First create the project:
+
+`yarn create react-app weather-app --template=typescript`
+
+Once yarn finishes setting up the project folder
+
+```bash
+cd weather-app
+yarn start
+```
+
+This just shows the app is working. Shut down the server and get to work!
+
+## Set up your .env.local for running the app locally
+
+You'll need to configure the `.env.local` file which contains your OpenWeatherMap.org API Key.
+
+```
+cp .env.local-template .env.local
+```
+
+Open the file and set your environment variables appropriately.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
