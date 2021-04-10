@@ -13,7 +13,7 @@ export function WeatherProvider({ children }: { children: ReactNode }) {
     <weatherContext.Provider value={weather}>
       {children}
     </weatherContext.Provider>
-  )
+  );
 }
 
 function useWeatherProvider() {
@@ -25,13 +25,13 @@ function useWeatherProvider() {
   }
 
   function updateWeather(val: IOpenWeatherResponse) {
-    setWeather(val)
+    setWeather(val);
   }
 
   return {
     locationValue,
     weather,
     updateLocation,
-    updateWeather
-  }
+    updateWeather,
+  };
 }
