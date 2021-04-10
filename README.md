@@ -23,6 +23,12 @@ cp .env.local-template .env.local
 
 Open the file and set your environment variables appropriately.
 
+# Additional dependencies
+
+I added a few dependencies to make API calls and testing API calls easier.
+
+[superagent](https://visionmedia.github.io/superagent/) is my goto HTTP wrapper for both front and backend development.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
