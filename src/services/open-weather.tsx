@@ -6,7 +6,7 @@ type ApiOptions = {
   units?: string;
   q?: string;
   zip?: string;
-}
+};
 
 type Item = {
   description: string;
@@ -70,8 +70,6 @@ export class OpenWeather {
 
   query(args: ApiOptions): Promise<Response> {
     console.log(this.host);
-    return request
-      .get(this.host)
-      .query(args);
+    return request.get(this.host).query(args);
   }
 }
