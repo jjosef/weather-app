@@ -32,6 +32,6 @@ function useWeatherProvider() {
     locationValue,
     weather,
     updateLocation,
-    updateWeather,
+    updateWeather
   };
 }

@@ -1,4 +1,12 @@
-import superagent, { Response } from 'superagent';
+import request, { Response } from 'superagent';
+
+type ApiOptions = {
+  lat?: number;
+  lon?: number;
+  units?: string;
+  q?: string;
+  zip?: string;
+}
 
 type Item = {
   description: string;
@@ -55,21 +63,15 @@ export interface IOpenWeatherResponse {
 
 export class OpenWeather {
   host: string;
-  apiKey: string;
 
-  constructor(host = 'https://api.openweathermap.org/data/2.5/weather') {
+  constructor(host = process.env.REACT_APP_API_HOST || '') {
     this.host = host;
-    this.apiKey = process.env.REACT_APP_OWM_API_KEY || '';
   }
 
-  query(q: string): Promise<Response> {
-    return superagent.get(this.host).query({ q }).query({ appid: this.apiKey });
-  }
-
-  latlng(lat: number, lon: number): Promise<Response> {
-    return superagent
+  query(args: ApiOptions): Promise<Response> {
+    console.log(this.host);
+    return request
       .get(this.host)
-      .query({ lat, lon })
-      .query({ appid: this.apiKey });
+      .query(args);
   }
 }

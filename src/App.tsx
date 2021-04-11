@@ -13,10 +13,10 @@ function App() {
         console.log(position);
         setLocation(position);
         const ow = new OpenWeather();
-        const res = await ow.latlng(
-          get(position, 'coords.latitude', 0),
-          get(position, 'coords.longitude', 0)
-        );
+        const res = await ow.query({
+          lat: get(position, 'coords.latitude', 0),
+          lon: get(position, 'coords.longitude', 0)
+        });
         console.log(res);
       } catch (err) {
         console.log(err);
@@ -27,7 +27,7 @@ function App() {
     getLocation();
   }, []);
 
-  return <div className="App"></div>;
+  return <div className="App" />;
 }
 
 export default App;

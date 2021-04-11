@@ -5,10 +5,10 @@ export const geolocation = (): Promise<GeolocationPosition | null> => {
     if (!get(navigator, 'geolocation')) return resolve(null);
 
     navigator.geolocation.getCurrentPosition(
-      (position) => {
+      position => {
         return resolve(position);
       },
-      (err) => {
+      err => {
         return reject(err);
       }
     );
