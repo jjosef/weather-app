@@ -19,6 +19,7 @@ export function WeatherProvider({ children }: { children: ReactNode }) {
 function useWeatherProvider() {
   const [locationValue, setLocationValue] = useState('');
   const [weather, setWeather] = useState<IOpenWeatherResponse | null>(null);
+  const [units, setUnits] = useState('imperial');
 
   function updateLocation(val: string) {
     setLocationValue(val);
@@ -28,10 +29,16 @@ function useWeatherProvider() {
     setWeather(val);
   }
 
+  function updateUnits(val: string) {
+    setUnits(val);
+  }
+
   return {
     locationValue,
     weather,
+    units,
     updateLocation,
-    updateWeather
+    updateWeather,
+    updateUnits
   };
 }

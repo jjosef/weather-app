@@ -2,6 +2,8 @@ import { get } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { geolocation } from './services/geolocation';
 import { OpenWeather } from './services/open-weather';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
 import './App.css';
 
 function App() {
@@ -27,7 +29,15 @@ function App() {
     getLocation();
   }, []);
 
-  return <div className="App" />;
+  return (
+    <div className="main">
+      <Header />
+      <div className="content">
+        main contents goes here
+      </div>
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
