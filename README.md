@@ -31,6 +31,10 @@ I added a few dependencies to make API calls and testing API calls easier.
 
 [weather-icons-react](https://najens.github.io/weather-icons-react/) a simple library of weather-related icons to spice up the app a little bit.
 
+# Deploying
+
+Deploying the app will publish it to a Google Storage bucket via Github Actions.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
