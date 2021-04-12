@@ -9,7 +9,7 @@ import classes from './WeatherCard.module.css';
 export function Temperature({
   value,
   units,
-  message = 'Currently'
+  message = 'Currently',
 }: {
   value: number;
   units: string | undefined;
@@ -28,7 +28,7 @@ export function Temperature({
 export function Wind({
   speed,
   deg,
-  units = 'imperial'
+  units = 'imperial',
 }: {
   speed: number;
   deg: number;

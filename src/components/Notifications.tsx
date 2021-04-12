@@ -3,7 +3,7 @@ import classes from './Notifications.module.css';
 
 export function Alert({
   alert,
-  onRemove
+  onRemove,
 }: {
   alert: IAlert;
   onRemove: () => void;

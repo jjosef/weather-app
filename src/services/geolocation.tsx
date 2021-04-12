@@ -7,10 +7,10 @@ export const geolocation = (): Promise<
     if (!get(navigator, 'geolocation')) return reject(null);
 
     navigator.geolocation.getCurrentPosition(
-      position => {
+      (position) => {
         return resolve(position);
       },
-      err => {
+      (err) => {
         return reject(err);
       }
     );

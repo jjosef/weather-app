@@ -14,7 +14,7 @@ export type INotifierContext = {
 const notifierContext = createContext<INotifierContext>({
   alerts: [],
   addAlert: (a: IAlert) => {},
-  removeAlert: (i: number) => {}
+  removeAlert: (i: number) => {},
 });
 
 export function useNotifier() {
@@ -46,6 +46,6 @@ function useNotifierProvider() {
   return {
     alerts,
     addAlert,
-    removeAlert
+    removeAlert,
   };
 }

@@ -6,7 +6,7 @@ import {
   useContext,
   useEffect,
   useRef,
-  useState
+  useState,
 } from 'react';
 import { GooglePlaces } from '../services/google-places';
 import { IOpenWeatherResponse, OpenWeather } from '../services/open-weather';
@@ -80,94 +80,88 @@ function useWeatherProvider() {
     setUnits(val);
   }
 
-  useEffect(
-    () => {
-      if (weather && unitsChanged.current) {
-        unitsChanged.current = false;
-      } else {
-        unitsChanged.current = false;
-        if (!isLocationSelected.current) {
-          return;
-        }
-
-        if (isLoadingWeather.current) {
-          return;
-        }
-
-        if (weather) {
-          return;
-        }
-      }
-
-      async function loadWeather() {
-        try {
-          const result = await new OpenWeather().query({
-            q: locationValue,
-            units: units
-          });
-          updateWeather(result.body as IOpenWeatherResponse);
-          isLoadingWeather.current = false;
-        } catch (err) {
-          console.log(err);
-          isLoadingWeather.current = false;
-          let message =
-            'An error occurred loading the weather. If this persists contact support.';
-          if (err.status === 404) {
-            message = 'Location not found. Try something more generic.';
-          }
-          notifier.addAlert({ message, className: 'error' });
-          // TODO: notification handler
-        }
-      }
-
-      isLoadingWeather.current = true;
-
-      loadWeather();
-    },
-    [locationValue, weather, units]
-  );
-
-  useEffect(
-    () => {
-      if (isLocationSelected.current) {
-        isLocationSelected.current = false;
-        return;
-      }
-      if (locationValue.length < 3) {
-        setLocationSearch([]);
-        return;
-      }
-      if (isLoadingLocation.current || isLoadingWeather.current) {
+  useEffect(() => {
+    if (weather && unitsChanged.current) {
+      unitsChanged.current = false;
+    } else {
+      unitsChanged.current = false;
+      if (!isLocationSelected.current) {
         return;
       }
 
-      async function loadPlaces() {
-        try {
-          const result = await new GooglePlaces().query(locationValue);
-          updateLocationSearch(
-            get(result, 'body.predictions', []).map((p: LocationSearch) => ({
-              description: p.description
-            }))
-          );
-          isLoadingLocation.current = false;
-        } catch (err) {
-          console.log(err);
-          isLoadingLocation.current = false;
-          notifier.addAlert({
-            message:
-              'An error occurred getting location listings, if it persists contact support.',
-            className: 'error'
-          });
-          // TODO: notification handler
-        }
+      if (isLoadingWeather.current) {
+        return;
       }
 
-      isLoadingLocation.current = true;
+      if (weather) {
+        return;
+      }
+    }
 
-      loadPlaces();
-    },
-    [locationValue]
-  );
+    async function loadWeather() {
+      try {
+        const result = await new OpenWeather().query({
+          q: locationValue,
+          units: units,
+        });
+        updateWeather(result.body as IOpenWeatherResponse);
+        isLoadingWeather.current = false;
+      } catch (err) {
+        console.log(err);
+        isLoadingWeather.current = false;
+        let message =
+          'An error occurred loading the weather. If this persists contact support.';
+        if (err.status === 404) {
+          message = 'Location not found. Try something more generic.';
+        }
+        notifier.addAlert({ message, className: 'error' });
+        // TODO: notification handler
+      }
+    }
+
+    isLoadingWeather.current = true;
+
+    loadWeather();
+  }, [locationValue, weather, units]);
+
+  useEffect(() => {
+    if (isLocationSelected.current) {
+      isLocationSelected.current = false;
+      return;
+    }
+    if (locationValue.length < 3) {
+      setLocationSearch([]);
+      return;
+    }
+    if (isLoadingLocation.current || isLoadingWeather.current) {
+      return;
+    }
+
+    async function loadPlaces() {
+      try {
+        const result = await new GooglePlaces().query(locationValue);
+        updateLocationSearch(
+          get(result, 'body.predictions', []).map((p: LocationSearch) => ({
+            description: p.description,
+          }))
+        );
+        isLoadingLocation.current = false;
+      } catch (err) {
+        console.log(err);
+        isLoadingLocation.current = false;
+        notifier.addAlert({
+          message:
+            'An error occurred getting location listings, if it persists contact support.',
+          className: 'error',
+        });
+        // TODO: notification handler
+      }
+    }
+
+    isLoadingLocation.current = true;
+
+    loadPlaces();
+  }, [locationValue]);
 
   return {
     locationValue,
@@ -179,6 +173,6 @@ function useWeatherProvider() {
     updateLocation,
     updateLocationSearch,
     updateWeather,
-    updateUnits
+    updateUnits,
   };
 }

@@ -21,5 +21,5 @@ export const IconMap: IconProp = {
   '13n': 'wi-night-snow',
   '50d': 'wi-day-fog',
   '50n': 'wi-night-fog',
-  default: 'wi-na'
+  default: 'wi-na',
 };

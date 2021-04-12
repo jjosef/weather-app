@@ -4,12 +4,12 @@ export type SystemProp = {
 
 export const TEMP: SystemProp = {
   imperial: 'Fahrenheit',
-  metric: 'Celcius'
+  metric: 'Celcius',
 };
 
 export const DISTANCE: SystemProp = {
   imperial: 'mi/hr',
-  metric: 'm/s'
+  metric: 'm/s',
 };
 
 export const WIND = [
@@ -29,5 +29,5 @@ export const WIND = [
   'WNW',
   'NW',
   'NNW',
-  'N'
+  'N',
 ];

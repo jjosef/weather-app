@@ -5,9 +5,11 @@ export function Header() {
   const { units, updateUnits } = useWeather();
 
   const handleChangeUnits = (event: ChangeEvent<HTMLInputElement>): void => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     updateUnits?.(value);
-  }
+  };
 
   return (
     <header>

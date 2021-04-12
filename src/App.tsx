@@ -19,7 +19,7 @@ function App() {
         const ow = new OpenWeather();
         const res = await ow.query({
           lat: get(position, 'coords.latitude', 0),
-          lon: get(position, 'coords.longitude', 0)
+          lon: get(position, 'coords.longitude', 0),
         });
         updateLocation?.(res.body.name, true);
       } catch (err) {
