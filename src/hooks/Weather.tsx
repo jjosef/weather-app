@@ -35,7 +35,13 @@ export function useWeather() {
   return useContext(weatherContext);
 }
 
-export function WeatherProvider({ value, children }: { value?: Partial<WeatherContext>, children: ReactNode }) {
+export function WeatherProvider({
+  value,
+  children,
+}: {
+  value?: Partial<WeatherContext>;
+  children: ReactNode;
+}) {
   const weather = useWeatherProvider();
   return (
     <weatherContext.Provider value={weather}>

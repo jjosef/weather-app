@@ -61,21 +61,20 @@ export function MessageGenerator({
       const mainTemp = get(weather, 'main.temp');
       if (mainTemp && w.tempCompare === '>' && tempToCompare > 0) {
         if (mainTemp > tempToCompare) {
-          match = true;
+          if (w.main && w.main === get(weather, 'weather[0].main')) {
+            match = true;
+          } else if (!w.main) {
+            match = true;
+          }
         }
       } else if (mainTemp && w.tempCompare === '<' && tempToCompare > 0) {
         if (mainTemp < tempToCompare) {
-          match = true;
+          if (w.main && w.main === get(weather, 'weather[0].main')) {
+            match = true;
+          } else if (!w.main) {
+            match = true;
+          }
         }
-      }
-
-      if (
-        w.tempCompare &&
-        match === true &&
-        w.main &&
-        w.main === get(weather, 'weather[0].main')
-      ) {
-        match = true;
       }
 
       if (
