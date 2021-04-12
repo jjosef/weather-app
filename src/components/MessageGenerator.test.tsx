@@ -1,18 +1,18 @@
 import { render, screen } from '@testing-library/react';
 import { MessageGenerator } from './MessageGenerator';
 
-type ComponentProps = React.ComponentProps<typeof MessageGenerator>
+type ComponentProps = React.ComponentProps<typeof MessageGenerator>;
 
 test('renders message generator and should display', () => {
   const weather: Partial<ComponentProps> = {
     main: {
-      temp: 75
+      temp: 75,
     },
     weather: [
       {
-        main: 'Clear'
-      }
-    ]
+        main: 'Clear',
+      },
+    ],
   };
 
   const units = 'imperial';

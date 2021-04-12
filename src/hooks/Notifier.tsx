@@ -21,7 +21,7 @@ export function useNotifier() {
   return useContext(notifierContext);
 }
 
-export function NotifierProvider({ children }: { children: ReactNode }) {
+export function NotifierProvider({ value, children }: { value?: Partial<INotifierContext>, children: ReactNode }) {
   const notifier = useNotifierProvider();
   return (
     <notifierContext.Provider value={notifier}>

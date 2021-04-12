@@ -96,5 +96,9 @@ export function MessageGenerator({
     }
   }, [weather]);
 
-  return <div data-testid="weatherMessage" className={classes.weatherMessage}>{message}</div>;
+  return (
+    <div data-testid="weatherMessage" className={classes.weatherMessage}>
+      {message}
+    </div>
+  );
 }
