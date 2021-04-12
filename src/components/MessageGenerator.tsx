@@ -19,7 +19,7 @@ export const OVERALLWEATHER: WeatherMessage[] = [
     message: "Looks like it's getting hot out there!",
   },
   {
-    main: 'Clear Sky',
+    main: 'Clear',
     tempCompare: '>',
     imperial: 65,
     metric: 18,
@@ -96,5 +96,5 @@ export function MessageGenerator({
     }
   }, [weather]);
 
-  return <div className={classes.weatherMessage}>{message}</div>;
+  return <div data-testid="weatherMessage" className={classes.weatherMessage}>{message}</div>;
 }

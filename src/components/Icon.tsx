@@ -9,5 +9,5 @@ export function Icon({
   className?: string;
 }) {
   const classNames = `wi ${icon} ${className}`;
-  return <i className={classNames} />;
+  return <i data-testid="icon" className={classNames} />;
 }
