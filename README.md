@@ -13,15 +13,19 @@ yarn start
 
 This just shows the app is working. Shut down the server and get to work!
 
-## Set up your .env.local for running the app locally
+## Set up the /server
 
-You'll need to configure the `.env.local` file which contains your OpenWeatherMap.org API Key.
+You'll need to configure the `.env` file which contains your OpenWeatherMap.org and Google Places API Keys in the [server](server) directory.
 
 ```
-cp .env.local-template .env.local
+cp .env-template .env
 ```
 
 Open the file and set your environment variables appropriately.
+
+# Run the server
+
+You have two options here. Run each process separately or run them `concurrently` with `yarn dev`. 
 
 # Additional dependencies
 
@@ -33,7 +37,7 @@ I added a few dependencies to make API calls and testing API calls easier.
 
 # Deploying
 
-Deploying the app will publish it to a Google Storage bucket via Github Actions.
+Deploying the app will publish the React app to a Google Storage bucket and the backend proxy to a Google App Engine instance via Github Actions.
 
 # Getting Started with Create React App
 

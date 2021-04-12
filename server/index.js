@@ -23,6 +23,22 @@ app.get('/api/weather', async (req, res) => {
   }
 });
 
+app.get('/api/places', async (req, res) => {
+  try {
+    const gpRes = await request
+      .get(config.GOOGLE_PLACES_API_URI)
+      .query(req.query)
+      .query({ key: config.GOOGLE_PLACES_API_KEY });
+
+    res.json(gpRes.body);
+  } catch (err) {
+    console.log(err);
+    res
+      .status(err.status)
+      .json({ error: true, status: err.status, message: err.message });
+  }
+});
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);

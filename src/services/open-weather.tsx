@@ -36,8 +36,8 @@ type Coord = {
 type Sys = {
   country: string;
   id: number;
-  sunrise: number;
-  sunset: number;
+  sunrise?: number;
+  sunset?: number;
   type: number;
 };
 
@@ -69,7 +69,6 @@ export class OpenWeather {
   }
 
   query(args: ApiOptions): Promise<Response> {
-    console.log(this.host);
-    return request.get(this.host).query(args);
+    return request.get(`${this.host}/weather`).query(args);
   }
 }

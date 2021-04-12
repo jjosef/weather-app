@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { WeatherProvider } from './components/WeatherProvider';
+import { WeatherProvider } from './hooks/Weather';
+import { NotifierProvider } from './hooks/Notifier';
 
 ReactDOM.render(
   <React.StrictMode>
-    <WeatherProvider>
-      <App />
-    </WeatherProvider>
+    <NotifierProvider>
+      <WeatherProvider>
+        <App />
+      </WeatherProvider>
+    </NotifierProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

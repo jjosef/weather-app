@@ -1,0 +1,58 @@
+.weatherCard {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  flex-grow: 1;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.weatherCard.active {
+  opacity: 1;
+}
+
+.weatherCard.early {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.weatherCard.late {
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+.mainIcon {
+  margin: 16px;
+  font-size: 64px;
+}
+
+.tempWrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 16px 0;
+}
+
+.temp {
+  padding: 0 6px;
+  font-size: 18px;
+}
+
+.weatherMessage {
+  margin: 16px 0;
+  font-size: 22px;
+}
+
+.wind {
+  margin: 16px 0;
+}
+
+.lastUpdate {
+  margin-top: auto;
+  padding: 6px;
+  font-size: 12px;
+}
+
+.sunriseset {
+  margin-top: 16px;
+}

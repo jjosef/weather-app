@@ -1,0 +1,52 @@
+.wrapper {
+  min-width: 320px;
+  padding: 1em;
+  position: relative;
+}
+
+.autocomplete {
+  position: absolute;
+  z-index: 10;
+  width: calc(100% - 8px);
+  top: 100%;
+  margin-top: -22px;
+  left: 4px;
+  background-color: #fff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow: 0 4px 5px #999, inset 0 -2px 3px rgb(33, 158, 230);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.autocomplete.active {
+  opacity: 1;
+}
+
+.acitem {
+  padding: 12px;
+  border-top: #999;
+}
+
+input.search {
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  padding: 12px;
+  margin-left: -12px;
+  margin-right: -12px;
+  box-shadow: 0 1px 5px #999, inset 0 0 2px #999;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+input.search:focus {
+  box-shadow: 0 1px 5px #999, inset 0 0 3px rgb(33, 158, 230);
+}
+
+@media (max-width: 360px) {
+  .wrapper {
+    min-width: 280px;
+  }
+}

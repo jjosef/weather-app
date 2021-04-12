@@ -1,8 +1,10 @@
 import { get } from 'lodash';
 
-export const geolocation = (): Promise<GeolocationPosition | null> => {
+export const geolocation = (): Promise<
+  GeolocationPosition | GeolocationPositionError | null
+> => {
   return new Promise((resolve, reject) => {
-    if (!get(navigator, 'geolocation')) return resolve(null);
+    if (!get(navigator, 'geolocation')) return reject(null);
 
     navigator.geolocation.getCurrentPosition(
       position => {
