@@ -28,7 +28,7 @@ test.each([
   [42, 'Snow', 'imperial', 'Get out and make yourself a snowman!'],
   [50, 'Thunderstorm', 'imperial', 'Ahhhhhhh!'],
   [20, 'Rain', 'metric', 'Sounds like a good day to chill.'],
-  [31, 'Clear', 'metric', "Looks like it's getting hot out there!"],
+  [31, 'Clear', 'metric', ["Looks like it's getting hot out there!", 'Get outta the house! Its gorgeous!']],
   [30, 'Something else', 'metric', 'Something else'],
 ])(
   'test message at %i with %s weather on %s system',
@@ -44,8 +44,15 @@ test.each([
       ],
     };
 
-    render(<MessageGenerator weather={weather} units={units} />);
-    const message = screen.getByText(expectedMessage);
-    expect(message).toBeInTheDocument();
+    const { container } = render(<MessageGenerator weather={weather} units={units} />);
+    if (Array.isArray(expectedMessage)) {
+      // this feels so hacky but it works...
+      const message = screen.getByTestId('weatherMessage');
+      const match = new RegExp(`${expectedMessage.join('|')}`);
+      expect(message).toHaveTextContent(match);
+    } else {
+      const message = screen.getByText(expectedMessage);
+      expect(message).toBeInTheDocument();
+    }
   }
 );
