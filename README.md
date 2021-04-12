@@ -39,6 +39,16 @@ I added a few dependencies to make API calls and testing API calls easier.
 
 Deploying the app will publish the React app and the backend proxy to a GCP Cloud Run instance via Github Actions.
 
+Deploying the React app manually can be done like so:
+
+```
+gcloud builds submit --tag gcr.io/$GCP_PROJECT_ID/weather-app
+...
+gcloud run deploy weather-app --image gcr.io/$GCP_PROJECT_ID/weather-app --platform managed --region us-central1 --allow-unauthenticated
+```
+
+For versioning, you should specify a build tag on your image (likely during CI/CD). In this example repo we'll not get into that.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

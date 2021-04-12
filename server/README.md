@@ -11,3 +11,11 @@ Run the server:
 # Deploying
 
 Deployments are using GCP Cloud Run and Github Actions.
+
+Deploying manually can be achieved with the following commands:
+
+```
+gcloud builds submit --tag gcr.io/$GCP_PROJECT_ID/weather-app-api
+...
+gcloud run deploy weather-app-api --image gcr.io/$GCP_PROJECT_ID/weather-app-api --platform managed --region us-central1 --allow-unauthenticated --set-env-vars "OPEN_WEATHER_API_KEY=$OPEN_WEATHER_API_KEY,GOOGLE_PLACES_API_KEY=$GOOGLE_PLACES_API_KEY"
+```
