@@ -52,13 +52,12 @@ export function Wind({
 export function SunRiseSet({
   message,
   time,
-  ...rest
 }: {
   message: string;
   time: number;
 }) {
   const d = new Date(time);
-  const timeText = `${d.toTimeString().substr(0, 5)} UTC`;
+  const timeText = `${d.toUTCString().substr(-12, 5)} local time`;
   return (
     <div className={classes.sunriseset}>
       {message} {timeText}
@@ -69,9 +68,11 @@ export function SunRiseSet({
 export function WeatherCard() {
   const { weather, units } = useWeather();
   let alterClass = '';
-  const sunrise = get(weather, 'sys.sunrise', 0) * 1000;
-  const sunset = get(weather, 'sys.sunset', 0) * 1000;
-  const now = get(weather, 'dt', 0) * 1000;
+  const sunrise =
+    (get(weather, 'sys.sunrise', 0) + get(weather, 'timezone')) * 1000;
+  const sunset =
+    (get(weather, 'sys.sunset', 0) + get(weather, 'timezone')) * 1000;
+  const now = (get(weather, 'dt', 0) + get(weather, 'timezone')) * 1000;
   if (now >= sunrise - 60 * 60 * 1000 && now <= sunrise + 60 * 60 * 1000) {
     alterClass = classes.early;
   } else if (now >= sunset && now < sunrise - 60 * 60 * 1000) {
@@ -106,7 +107,7 @@ export function WeatherCard() {
       <SunRiseSet message="Sunrise at" time={sunrise} />
       <SunRiseSet message="Sunset at" time={sunset} />
       <div className={classes.lastUpdate}>
-        Last updated at {lastUpdate.toTimeString().substr(0, 5)} UTC
+        Last updated at {lastUpdate.toUTCString().substr(-12, 5)} local time
       </div>
     </div>
   );

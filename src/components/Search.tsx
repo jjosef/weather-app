@@ -14,20 +14,23 @@ export function Search() {
   return (
     <div className={classes.wrapper + ` ${weather ? 'active' : ''}`}>
       <input
+        aria-label="location"
         className={classes.search}
         name="locationValue"
         value={locationValue}
         placeholder="Enter a location name or zipcode"
         autoComplete="off"
         onChange={(event) => {
-          // normally i'd create a form component to manage this type of stuff but since it is so basic, not bothering.
+          // normally i'd create/utilize a component to manage form inputs but since this is so basic,
+          // not bothering.
+          // plus i get to CSS style.
           const {
             target: { value },
           } = event;
           updateLocation?.(value);
         }}
       />
-      <div className={acClasses}>
+      <div data-testid="locationSelect" className={acClasses}>
         {locationSearch?.map((loc, i) => (
           <div
             key={i}

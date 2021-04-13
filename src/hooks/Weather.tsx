@@ -35,13 +35,7 @@ export function useWeather() {
   return useContext(weatherContext);
 }
 
-export function WeatherProvider({
-  value,
-  children,
-}: {
-  value?: Partial<WeatherContext>;
-  children: ReactNode;
-}) {
+export function WeatherProvider({ children }: { children: ReactNode }) {
   const weather = useWeatherProvider();
   return (
     <weatherContext.Provider value={weather}>
@@ -113,7 +107,6 @@ function useWeatherProvider() {
         updateWeather(result.body as IOpenWeatherResponse);
         isLoadingWeather.current = false;
       } catch (err) {
-        console.log(err);
         isLoadingWeather.current = false;
         let message =
           'An error occurred loading the weather. If this persists contact support.';
@@ -121,7 +114,6 @@ function useWeatherProvider() {
           message = 'Location not found. Try something more generic.';
         }
         notifier.addAlert({ message, className: 'error' });
-        // TODO: notification handler
       }
     }
 
@@ -160,7 +152,6 @@ function useWeatherProvider() {
             'An error occurred getting location listings, if it persists contact support.',
           className: 'error',
         });
-        // TODO: notification handler
       }
     }
 

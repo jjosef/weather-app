@@ -13,6 +13,7 @@ import './App.css';
 function App() {
   const { updateLocation } = useWeather();
   useEffect(() => {
+    if (process.env.NODE_ENV === 'test') return;
     async function getLocation() {
       try {
         const position = await geolocation();
@@ -29,7 +30,9 @@ function App() {
       }
     }
 
-    getLocation();
+    if (navigator.geolocation) {
+      getLocation();
+    }
   }, []);
 
   return (

@@ -14,7 +14,7 @@
   background-color: #fff;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  box-shadow: 0 4px 5px #999, inset 0 -2px 3px rgb(33, 158, 230);
+  box-shadow: 0 4px 5px #999, inset 0 0 3px rgb(33, 158, 230);
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
@@ -26,6 +26,11 @@
 .acitem {
   padding: 12px;
   border-top: #999;
+}
+
+.acitem:hover {
+  background: #ccc;
+  cursor: pointer;
 }
 
 input.search {

@@ -27,6 +27,14 @@ Open the file and set your environment variables appropriately.
 
 You have two options here. Run each process separately or run them `concurrently` with `yarn dev`. 
 
+To run them separately:
+
+`cd server && npm start`
+
+then (ideally in a different terminal)
+
+`yarn start`
+
 # Additional dependencies
 
 I added a few dependencies to make API calls and testing API calls easier.
@@ -34,6 +42,8 @@ I added a few dependencies to make API calls and testing API calls easier.
 [superagent](https://visionmedia.github.io/superagent/) is my goto HTTP wrapper for both front and backend development. I'm not creating a backend component in this example, but it would be useful for a simple user manager and location storage.
 
 [weather-icons](https://erikflowers.github.io/weather-icons/) a simple library of weather-related icons to spice up the app a little bit. This is a weird package, you need to install it from the github repo and not npm.
+
+[prettier](https://prettier.io/) I like prettier. It is opinionated but I enjoy it and works well with Code and TypeScript.
 
 # Deploying
 
@@ -48,6 +58,20 @@ gcloud run deploy weather-app --image gcr.io/$GCP_PROJECT_ID/weather-app --platf
 ```
 
 For versioning, you should specify a build tag on your image (likely during CI/CD). In this example repo we'll not get into that.
+
+# Caveats and Improvements
+
+Although this was intended to be "production ready", there are a few of things that could have been implemented to improve the quality of product.
+
+1. More robust testing - I tried to illustrate testing business logic and also DOM interaction, but if I had more time to spend I'd likely cover the custom hooks more in depth and set up integration tests. The [server](server) is basically just a proxy so I didn't bother writing tests for that. In a real-world application it would likely have more complexity and require unit tests and integration tests. Adding an E2E suite like cypress or similar would be nice for tracking UI problems as well or publishing them via Slack for the team to be aware of.
+
+2. Logging/Analytics library - For most projects you'd want to capture user interactions into a space where they can be observed by your organization. Whether this is Cloud Logging/Mixpanel/NewRelic/etc they are all solid solutions for helping debug incidents.
+
+3. Environment staging - Typically you'd want your CI pipelines to push changes to a staging area (or multiple) depending on features being built and release structure. I didn't implement this for this demo.
+
+4. Project structure - In a larger project I'd likely break up the components into a more hierarchical structure for manageability, but since I had less than 10 component files I decided to let them live together. Same with the [server](server), it is essentially a proxy so I didn't bother adding the complexity of TypeScript there, and it requires no real structure. Simple is best IMO.
+
+5. Dates/Timezones - I used vanilla JS Date methods for displaying times so I chose to display them as UTC. In a real app I'd probably take the time to render proper timezones. This seemed like a lot of bloat to add to a simple app so I chose not to.
 
 # Getting Started with Create React App
 

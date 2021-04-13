@@ -21,13 +21,7 @@ export function useNotifier() {
   return useContext(notifierContext);
 }
 
-export function NotifierProvider({
-  value,
-  children,
-}: {
-  value?: Partial<INotifierContext>;
-  children: ReactNode;
-}) {
+export function NotifierProvider({ children }: { children: ReactNode }) {
   const notifier = useNotifierProvider();
   return (
     <notifierContext.Provider value={notifier}>
@@ -40,12 +34,10 @@ function useNotifierProvider() {
   const [alerts, setAlerts] = useState<IAlert[]>([]);
 
   function addAlert(a: IAlert) {
-    console.log(a);
     setAlerts([...alerts, a]);
   }
 
   function removeAlert(i: number) {
-    console.log(i);
     setAlerts([...alerts.slice(0, i), ...alerts.slice(i + 1)]);
   }
 
