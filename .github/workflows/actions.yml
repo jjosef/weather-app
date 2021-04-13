@@ -35,10 +35,11 @@ jobs:
     steps:
       - run: echo "Building!"
       - name: Build React App and server
-      - run: |
+        run: |
           gcloud builds submit \
             --tag gcr.io/{{ secrets.GCP_PROJECT_ID }}/weather-app
-      - run: |
+      - name: Build server
+        run: |
           cd server && gcloud builds submit \
             --tag gcr.io/{{ secrets.GCP_PROJECT_ID }}/weather-app-api
 
@@ -47,14 +48,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Deploying!"
-      - name: Deploy React app and server
-      - run: |
+      - name: Deploy React app
+        run: |
           gcloud run deploy weather-app \
             --image gcr.io/{{ secrets.GCP_PROJECT_ID }}/weather-app \
             --platform managed \
             --region us-central1 \
             --allow-unauthenticated
-      - run: |
+      - name: Deploy server
+        run: |
           gcloud run deploy weather-app-api \
             --image gcr.io/$GCP_PROJECT_ID/weather-app-api \
             --platform managed \
