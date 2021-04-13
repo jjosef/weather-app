@@ -38,13 +38,13 @@ jobs:
 
       - name: Build React App
         run: |-
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/weather-app weather-app/
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/weather-app .
           docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/weather-app
 
       - name: Build server
         run: |-
           cd server
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/weather-app-api weather-app-api/
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/weather-app-api .
           docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/weather-app-api
 
   deploy:
