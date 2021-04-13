@@ -37,10 +37,12 @@ jobs:
       - name: Build React App and server
         run: |
           gcloud builds submit \
+            --project ${{ secrets.GCP_PROJECT_ID }}
             --tag gcr.io/${{ secrets.GCP_PROJECT_ID }}/weather-app
       - name: Build server
         run: |
           cd server && gcloud builds submit \
+            --project ${{ secrets.GCP_PROJECT_ID }}
             --tag gcr.io/${{ secrets.GCP_PROJECT_ID }}/weather-app-api
 
   deploy:
@@ -51,6 +53,7 @@ jobs:
       - name: Deploy React app
         run: |
           gcloud run deploy weather-app \
+            --project ${{ secrets.GCP_PROJECT_ID }}
             --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/weather-app \
             --platform managed \
             --region us-central1 \
@@ -58,6 +61,7 @@ jobs:
       - name: Deploy server
         run: |
           gcloud run deploy weather-app-api \
+            --project ${{ secrets.GCP_PROJECT_ID }}
             --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/weather-app-api \
             --platform managed \
             --region us-central1 \
