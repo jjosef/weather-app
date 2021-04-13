@@ -12,8 +12,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run tests
-        uses: actions/setup-node@1
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
       - run: CI=true yarn test
+
+  setup_gcp:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Setup gcloud"
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
