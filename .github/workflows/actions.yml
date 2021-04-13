@@ -28,3 +28,36 @@ jobs:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
+
+  build:
+    needs: [test, setup_gcp]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Building!"
+      - name: Build React App and server
+      - run: |
+          gcloud builds submit \
+            --tag gcr.io/{{ secrets.GCP_PROJECT_ID }}/weather-app
+      - run: |
+          cd server && gcloud builds submit \
+            --tag gcr.io/{{ secrets.GCP_PROJECT_ID }}/weather-app-api
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploying!"
+      - name: Deploy React app and server
+      - run: |
+          gcloud run deploy weather-app \
+            --image gcr.io/{{ secrets.GCP_PROJECT_ID }}/weather-app \
+            --platform managed \
+            --region us-central1 \
+            --allow-unauthenticated
+      - run: |
+          gcloud run deploy weather-app-api \
+            --image gcr.io/$GCP_PROJECT_ID/weather-app-api \
+            --platform managed \
+            --region us-central1 \
+            --allow-unauthenticated \
+            --set-env-vars "OPEN_WEATHER_API_KEY=${{ secrets.OPEN_WEATHER_API_KEY }},GOOGLE_PLACES_API_KEY=${{ secrets.GOOGLE_PLACES_API_KEY }}"
