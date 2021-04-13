@@ -71,7 +71,7 @@ Although this was intended to be "production ready", there are a few of things t
 
 4. Project structure - In a larger project I'd likely break up the components into a more hierarchical structure for manageability, but since I had less than 10 component files I decided to let them live together. Same with the [server](server), it is essentially a proxy so I didn't bother adding the complexity of TypeScript there, and it requires no real structure. Simple is best IMO.
 
-5. Dates/Timezones - I used vanilla JS Date methods for displaying times so I chose to display them as UTC. In a real app I'd probably take the time to render proper timezones. This seemed like a lot of bloat to add to a simple app so I chose not to.
+5. Dates/Timezones - I used vanilla JS Date methods for displaying times so I chose to display them "local time", which is accurate to what OWM returns to me, but I don't actually know what the timezones are and I'd probably need a library like moment/date-fns/joda to accurately tell the user what timezone the times are based in.
 
 # Getting Started with Create React App
 
