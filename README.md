@@ -39,7 +39,7 @@ then (ideally in a different terminal)
 
 I added a few dependencies to make API calls and testing API calls easier.
 
-[superagent](https://visionmedia.github.io/superagent/) is my goto HTTP wrapper for both front and backend development. I'm not creating a backend component in this example, but it would be useful for a simple user manager and location storage.
+[superagent](https://visionmedia.github.io/superagent/) is my goto HTTP wrapper for both front and backend development.
 
 [weather-icons](https://erikflowers.github.io/weather-icons/) a simple library of weather-related icons to spice up the app a little bit. This is a weird package, you need to install it from the github repo and not npm.
 
