@@ -61,7 +61,7 @@ For versioning, you should specify a build tag on your image (likely during CI/C
 
 # Caveats and Improvements
 
-Although this was intended to be "production ready", there are a few of things that could have been implemented to improve the quality of product.
+Although this was intended to be "production ready", there are a few things that could have been implemented to improve the quality of product.
 
 1. More robust testing - I tried to illustrate testing business logic and also DOM interaction, but if I had more time to spend I'd likely cover the custom hooks more in depth and set up integration tests. The [server](server) is basically just a proxy so I didn't bother writing tests for that. In a real-world application it would likely have more complexity and require unit tests and integration tests. Adding an E2E suite like cypress or similar would be nice for tracking UI problems as well or publishing them via Slack for the team to be aware of.
 
