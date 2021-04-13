@@ -45,6 +45,10 @@ I added a few dependencies to make API calls and testing API calls easier.
 
 [prettier](https://prettier.io/) I like prettier. It is opinionated but I enjoy it and works well with Code and TypeScript.
 
+[msw](https://www.npmjs.com/package/msw) This is a pretty great tool for mocking service calls without having to actually mock your "fetch" or other libraries that handle calls. Super useful in testing.
+
+[husky](https://typicode.github.io/husky/#/) For pre-commit hooks that prevent me from committing broken code and cleaning up my code style.
+
 # Deploying
 
 Deploying the app will publish the React app and the backend proxy to a GCP Cloud Run instance via Github Actions.
