@@ -19,7 +19,7 @@ jobs:
       - run: CI=true yarn test
 
   build:
-    needs: [test, setup_gcp]
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - run: echo "Building!"
@@ -59,7 +59,7 @@ jobs:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           service_account_email: ${{ secrets.GCP_SA_EMAIL }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
-          
+
       - name: Deploy React app
         run: |-
           gcloud run deploy weather-app \
