@@ -32,20 +32,20 @@ jobs:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           service_account_email: ${{ secrets.GCP_SA_EMAIL }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
 
-      - run: gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
+      - run: gcloud auth configure-docker
 
       - name: Build React App
         run: |-
-          gcloud builds submit \
-            --project ${{ secrets.GCP_PROJECT_ID }}
-            --tag gcr.io/${{ secrets.GCP_PROJECT_ID }}/weather-app
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/weather-app weather-app/
+          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/weather-app
 
       - name: Build server
         run: |-
-          cd server && gcloud builds submit \
-            --project ${{ secrets.GCP_PROJECT_ID }}
-            --tag gcr.io/${{ secrets.GCP_PROJECT_ID }}/weather-app-api
+          cd server
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/weather-app-api weather-app-api/
+          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/weather-app-api
 
   deploy:
     needs: build
@@ -61,6 +61,7 @@ jobs:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           service_account_email: ${{ secrets.GCP_SA_EMAIL }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
 
       - name: Deploy React app
         run: |-
