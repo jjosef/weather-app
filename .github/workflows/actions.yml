@@ -33,15 +33,15 @@ jobs:
           service_account_email: ${{ secrets.GCP_SA_EMAIL }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
 
-      - run: ls
-
       - name: Build React App
+        uses: ./
         run: |-
           gcloud builds submit \
             --project ${{ secrets.GCP_PROJECT_ID }}
             --tag gcr.io/${{ secrets.GCP_PROJECT_ID }}/weather-app
 
       - name: Build server
+        uses: ./
         run: |-
           cd server && gcloud builds submit \
             --project ${{ secrets.GCP_PROJECT_ID }}
@@ -63,6 +63,7 @@ jobs:
           service_account_key: ${{ secrets.GCP_SA_KEY }}
 
       - name: Deploy React app
+        uses: ./
         run: |-
           gcloud run deploy weather-app \
             --project ${{ secrets.GCP_PROJECT_ID }}
@@ -72,6 +73,7 @@ jobs:
             --allow-unauthenticated
 
       - name: Deploy server
+        uses: ./
         run: |-
           gcloud run deploy weather-app-api \
             --project ${{ secrets.GCP_PROJECT_ID }}
